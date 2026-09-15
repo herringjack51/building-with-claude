@@ -1,9 +1,16 @@
 """Send one message to Claude and print the reply.
 
-Requires the ANTHROPIC_API_KEY environment variable to be set.
+Requires an ANTHROPIC_API_KEY, either set as an environment variable or
+in a .env file in this folder (see .env.example).
 """
 
 import anthropic
+from dotenv import load_dotenv
+
+# Reads any KEY=value lines out of a .env file in the current directory
+# and loads them as environment variables. If there's no .env file, this
+# just does nothing (it won't error).
+load_dotenv()
 
 
 def main() -> None:
