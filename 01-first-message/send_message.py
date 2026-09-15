@@ -19,7 +19,7 @@ def main() -> None:
     client = anthropic.Anthropic()
 
     response = client.messages.create(
-        model="claude-opus-5",
+        model="claude-sonnet-5",
         max_tokens=1024,
         messages=[
             {"role": "user", "content": "In one sentence, what is the Claude API?"}
