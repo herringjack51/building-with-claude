@@ -8,6 +8,9 @@ numbered folder is a small, self-contained exercise from the course.
 
 - [`01-first-message/`](./01-first-message) — the "hello world" of the Claude
   API: send one message, print the reply.
+- [`02-system-prompts/`](./02-system-prompts) — same question, three
+  different `system` prompts, to see how much tone/shape comes from that
+  one field.
 
 ## Setup
 
