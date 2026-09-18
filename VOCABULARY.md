@@ -63,3 +63,33 @@ sessions are added at the bottom.
 - **trailing commas in function calls** — every keyword argument inside a
   function call needs a comma after it, except the very last one — even
   when each argument is on its own line.
+
+## Phase 2, Session 2 — Multi-turn Conversations
+
+- **stateless** — the API has no memory of its own between requests. Every
+  call to `client.messages.create(...)` is completely independent; Claude
+  doesn't "remember" anything from an earlier request unless you resend it
+  yourself as part of `messages`.
+- **conversation history** — a list you build and grow yourself (starting
+  empty: `history = []`), holding every user and assistant turn so far. You
+  resend the *whole* list on every request (`messages=history`) — that's
+  what makes it look like Claude "remembers" the conversation, when really
+  your code is just showing it everything again each time.
+- **`.append(item)`** — a method every list has built in, used to add one
+  new item onto the end of an existing list (`history.append({...})`).
+  Different from creating a list with items already in it (`[a, b, c]`) —
+  this adds to a list that already exists, one item at a time.
+- **`while True:`** — a loop that repeats forever, unlike `for`, which stops
+  after going through a fixed list. Used when you don't know in advance how
+  many times something needs to run (like a chat that continues until the
+  user decides to quit).
+- **`break`** — immediately exits the loop it's inside, skipping any
+  remaining code in that loop, and continues with whatever comes after it.
+- **`input(...)`** — a built-in function that pauses the program, waits for
+  someone to type something and press Enter, and returns what they typed as
+  a string. The text passed to it (e.g. `input("You: ")`) is shown as a
+  prompt right before the cursor.
+- **method vs. function call** — `input(...)` and `client.messages.create(...)`
+  are both "calls," but `.append(...)` is specifically a *method*: an action
+  that belongs to a particular object (here, a list) and is called with a
+  dot, `object.method(...)`, rather than standing alone.

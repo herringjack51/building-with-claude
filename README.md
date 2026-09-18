@@ -11,6 +11,9 @@ numbered folder is a small, self-contained exercise from the course.
 - [`02-system-prompts/`](./02-system-prompts) — same question, three
   different `system` prompts (terse expert, patient teacher, skeptical
   reviewer), to compare how much tone/shape comes from that one field.
+- [`03-multi-turn-conversation/`](./03-multi-turn-conversation) — a CLI
+  chat loop that proves the API is stateless: it resends the whole
+  conversation history on every turn so Claude "remembers" earlier turns.
 
 ## Setup
 
