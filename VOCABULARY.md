@@ -93,3 +93,24 @@ sessions are added at the bottom.
   are both "calls," but `.append(...)` is specifically a *method*: an action
   that belongs to a particular object (here, a list) and is called with a
   dot, `object.method(...)`, rather than standing alone.
+
+## Phase 2, Session 3 — Vision (Images)
+
+- **`content` as a list of blocks** — up to now, `"content"` in a message has
+  always been a plain string. To send an image alongside text, `"content"`
+  becomes a *list* holding multiple blocks instead — one describing the
+  image, one describing the text question — so a single turn can carry more
+  than one kind of thing at once.
+- **image block** — `{"type": "image", "source": {...}}`, one item inside a
+  `content` list. Its `"source"` is itself a nested dictionary describing
+  *where* the image data comes from.
+- **`source` types: `"url"` vs. `"base64"`** — `"url"` points to an image
+  already hosted online (`{"type": "url", "url": "https://..."}`) — no file
+  reading needed. `"base64"` is for a local image file: you read its raw
+  bytes and encode them as text so they can travel inside a JSON request.
+  URL is simpler when the image is already online; base64 is needed for a
+  file that only exists on your own disk.
+- **why the reply is still `"text"` only** — Claude describes an image in
+  words; it doesn't send an image back. So when reading `response.content`,
+  only `"text"` blocks ever show up here, even though the *request* you sent
+  contained an `"image"` block.

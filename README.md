@@ -14,6 +14,8 @@ numbered folder is a small, self-contained exercise from the course.
 - [`03-multi-turn-conversation/`](./03-multi-turn-conversation) — a CLI
   chat loop that proves the API is stateless: it resends the whole
   conversation history on every turn so Claude "remembers" earlier turns.
+- [`04-vision/`](./04-vision) — sends an image (via URL) alongside a text
+  question, and asks Claude to describe what's in it.
 
 ## Setup
 
