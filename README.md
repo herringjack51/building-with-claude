@@ -16,6 +16,9 @@ numbered folder is a small, self-contained exercise from the course.
   conversation history on every turn so Claude "remembers" earlier turns.
 - [`04-vision/`](./04-vision) — sends an image (via URL) alongside a text
   question, and asks Claude to describe what's in it.
+- [`05-streaming/`](./05-streaming) — the p2s2 chatbot, upgraded to stream
+  the reply piece by piece (`client.messages.stream(...)`) instead of
+  waiting for the whole thing.
 
 ## Setup
 

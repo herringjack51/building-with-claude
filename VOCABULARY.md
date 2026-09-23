@@ -114,3 +114,35 @@ sessions are added at the bottom.
   words; it doesn't send an image back. So when reading `response.content`,
   only `"text"` blocks ever show up here, even though the *request* you sent
   contained an `"image"` block.
+
+## Phase 2, Session 4 — Streaming
+
+- **streaming** — instead of waiting for Claude's entire reply to finish
+  generating before you see any of it, streaming delivers the reply in small
+  pieces, as it's generated, so it can be shown gradually (like a live
+  typing effect) rather than dumped all at once.
+- **`client.messages.stream(...)`** — the streaming counterpart to
+  `client.messages.create(...)`. Used together with `with ... as`.
+- **`with ... as name:`** — opens a resource (here, a live connection to the
+  API) and automatically cleans it up when the indented block underneath it
+  finishes, even if something goes wrong partway through. The `as name:`
+  part must stay on the *same logical line* as the thing being opened — it
+  can't be split onto its own line below, even though the call itself can
+  span multiple lines inside its own `( )`.
+- **`stream.text_stream`** — an iterable (loopable with `for`) that yields
+  the next small chunk of text each time through the loop, as it arrives —
+  not the whole reply at once, and not the same block per chunk.
+- **`print(text, end="", flush=True)`** — two `print()` options besides the
+  usual: `end=""` stops it from adding a newline after every call (so chunks
+  join into one continuous line instead of stacking), and `flush=True`
+  forces the text to display immediately instead of being held in a buffer.
+- **`+=`** — shorthand for "take the value already in this variable, add
+  something onto the end, and store the result back into the same
+  variable" (`x += y` means the same as `x = x + y`). Used here to build up
+  the complete reply out of many small streamed chunks, the same way
+  `.append()` grows a list one item at a time, but for strings.
+- **variable name collisions** — reusing the same name for two different
+  things in overlapping scopes (e.g. naming a loop variable the same as an
+  outer `with ... as` variable) silently overwrites the original, often
+  breaking code in a confusing way rather than raising an obvious error.
+  Picking distinct names avoids this entirely.
